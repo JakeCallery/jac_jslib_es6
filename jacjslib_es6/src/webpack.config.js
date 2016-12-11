@@ -1,19 +1,32 @@
 'use strict';
 
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: [
-        './index.js',
+        './js/index.js',
     ],
 
     output: {
         filename: 'bundle.js',
-        path: __dirname
+        path: __dirname + '/dist'
+    },
+
+    resolve: {
+        modules: [
+            'node_modules',
+            './js/jacjslib_es6'
+        ]
     },
 
     module: {
         loaders: [
+            {
+                test: /\.html$/,
+                loader: 'html-loader',
+                exclude: /node_modules/
+            },
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
@@ -31,11 +44,13 @@ module.exports = {
             }
         ],
 
-        // plugins: [
-        //     new webpack.optimize.UglifyJsPlugin({minimize: true})
-        // ]
-
     },
+
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: 'html/index.html'
+        })
+    ],
 
     devtool: 'source-map'
 

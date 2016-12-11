@@ -5,6 +5,7 @@
 
 import EventDispatcher from 'jac/events/EventDispatcher';
 import ObjUtils from 'jac/utils/ObjUtils';
+
     export default (function(){
         /**
          * Creates a BaseTarget object
