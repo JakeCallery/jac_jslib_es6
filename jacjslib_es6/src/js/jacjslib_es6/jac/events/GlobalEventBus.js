@@ -4,28 +4,25 @@
  */
 
 import EventDispatcher from 'jac/events/EventDispatcher';
-import ObjUtils from 'jac/utils/ObjUtils';
-    export default (function(){
-        /**
-         * Creates a GlobalEventBus Singleton object
-         * to use ALWAYS new it up geb = new GlobalEventBus()
-         * @extends {EventDispatcher}
-         * @constructor
-         */
-        function GlobalEventBus(){
-	        if(GlobalEventBus.prototype._singletonInstance){
-		        return GlobalEventBus.prototype._singletonInstance;
-	        }
+let instance = null;
 
-	        //super
-	        EventDispatcher.call(this);
-	        GlobalEventBus.prototype._singletonInstance = this;
+export default class GlobalEventBus extends EventDispatcher{
+    /**
+     * Creates a GlobalEventBus Singleton object
+     * to use ALWAYS new it up geb = new GlobalEventBus()
+     * @extends {EventDispatcher}
+     * @constructor
+     */
+    constructor(){
+        super();
+        if(!instance){
+            instance = this;
         }
-        
-        //Inherit / Extend
-        ObjUtils.inheritPrototype(GlobalEventBus,EventDispatcher);
-        
-        //Return constructor
-        return GlobalEventBus;
-    })();
+
+        this.time = new Date();
+
+        return instance;
+    }
+
+}
 

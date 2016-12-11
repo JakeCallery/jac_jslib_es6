@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-export default (function () {
+export default class JacEvent {
 
     /**
      * Creates a JacEvent object to be used with jac.EventDispatcher
@@ -14,13 +14,11 @@ export default (function () {
      * @param {Object} [$data]
      * @constructor
      */
-    function JacEvent($type, $data) {
+    constructor ($type, $data) {
         this.target = undefined;
         this.currentTarget = undefined;
         this.type = $type;
         this.data = $data;
     }
-
-    return JacEvent;
-})();
+}
 
